@@ -8,7 +8,7 @@ st.set_page_config(page_title="Granit AI Assistant", page_icon="🚜", layout="c
 st.title("🚜 Granit Quality Parts - Assistente IA")
 st.write("Chiedi informazioni sui ricambi e naviga il catalogo in modo istantaneo.")
 
-# Configurazione della chiave API di Google con la nuova libreria
+# Configurazione della chiave API di Google
 client = genai.Client(api_key="AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg")
 
 # Caricamento del catalogo CSV
@@ -51,9 +51,9 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
     with st.chat_message("assistant"):
         with st.spinner("Sto cercando nel catalogo..."):
             try:
-                # Chiamata pulita e moderna all'API di Gemini
+                # Chiamata all'API di Gemini con il modello stabile supportato
                 response = client.models.generate_content(
-                    model='gemini-2.5-flash',
+                    model='gemini-1.5-flash',
                     contents=user_query,
                     config=genai.types.GenerateContentConfig(
                         system_instruction=system_prompt,
