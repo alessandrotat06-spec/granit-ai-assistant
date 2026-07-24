@@ -9,7 +9,7 @@ st.title("🚜 Granit Quality Parts - Assistente IA")
 st.write("Chiedi informazioni sui ricambi e naviga il catalogo in modo istantaneo.")
 
 # Configurazione della chiave API di Google con la nuova libreria
-client = genai.Client(api_key="TUA_GOOGLE_API_KEY")
+client = genai.Client(api_key="AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg")
 
 # Caricamento del catalogo CSV
 @st.cache_data
