@@ -1,20 +1,28 @@
 import streamlit as st
 import pandas as pd
+from google import genai
 
+# Configurazione della pagina Streamlit
 st.set_page_config(page_title="Granit Quality Parts - Assistente IA", page_icon="🚜", layout="centered")
 
 st.title("🚜 Granit Quality Parts - Assistente IA")
-st.write("Cerca i ricambi nel catalogo ufficiale in modo istantaneo.")
+st.write("Chiedi informazioni sui ricambi e naviga il catalogo ufficiale con l'intelligenza artificiale.")
 
+# Barra laterale per inserire l'API Key di Google
+api_key_input = st.sidebar.text_input("AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg", type="password")
+
+# Caricamento del catalogo CSV
 @st.cache_data
 def carica_catalogo():
     try:
-        return pd.read_csv('catalogo_granit.csv')
-    except:
-        return None
+        df = pd.read_csv('catalogo_granit.csv')
+        return df.to_string(index=False)
+    except Exception as e:
+        return "Catalogo non trovato."
 
-df_catalogo = carica_catalogo()
+catalogo_testo = carica_catalogo()
 
+# Gestione della cronologia chat
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -22,48 +30,44 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if user_query := st.chat_input("Cerca un ricambio..."):
+# Input dell'utente
+if user_query := st.chat_input("Cerca un ricambio (es. cuneo freno, staffa a u, anello in gomma)..."):
     st.session_state.messages.append({"role": "user", "content": user_query})
     with st.chat_message("user"):
         st.markdown(user_query)
 
     with st.chat_message("assistant"):
-        with st.spinner("Sto cercando nel catalogo..."):
-            risultati_esatti = []
-            risultati_simili = []
-            
-            if df_catalogo is not None:
-                query_lower = user_query.lower()
-                parole_query = [p for p in query_lower.split() if len(p) > 1]
-                
-                for _, row in df_catalogo.iterrows():
-                    descrizione = str(row.get('Descrizione', '')).lower()
-                    codice = str(row.get('Codice', '')).lower()
-                    rif = str(row.get('Rif_Orig', '')).lower()
-                    riga_testo = f"{codice} {rif} {descrizione} {str(row.get('Modelli_Compatibilita', '')).lower()}"
+        if not api_key_input:
+            st.warning("⚠️ Per favore, inserisci la tua Google API Key nella barra laterale per attivare l'assistente IA.")
+        else:
+            with st.spinner("L'intelligenza artificiale sta cercando nel catalogo..."):
+                try:
+                    # Inizializzazione del client Google GenAI con la chiave fornita
+                    client = genai.Client(api_key=api_key_input)
                     
-                    # Priorità massima: se la descrizione contiene tutte le parole chiave principali (es. "staffa" e "u")
-                    if all(p in descrizione for p in parole_query):
-                        risultati_esatti.append(row)
-                    elif any(p in riga_testo for p in parole_query):
-                        risultati_simili.append(row)
+                    system_prompt = f"""
+Sei l'assistente virtuale ufficiale di Granit Quality Parts.
+ECCO IL CATALOGO COMPLETO DEI PRODOTTI:
+{catalogo_testo}
 
-            # Uniamo mettendo prima i risultati esatti
-            tutti_risultati = risultati_esatti + [r for r in risultati_simili if r not in risultati_esatti]
+REGOLE TASSATIVE:
+1. Rispondi usando ESCLUSIVAMENTE i dati presenti nel catalogo sopra. Non inventare codici o prodotti che non sono scritti nel catalogo.
+2. Sii diretto e preciso. Quando un utente cerca un ricambio (es. cuneo freno, staffa a u, ecc.), restituisci il prodotto corrispondente esatto con il suo Codice Articolo, Rif. Originale, Descrizione e Compatibilità/Dettagli.
+3. Se il ricambio richiesto non è presente nel catalogo, di' chiaramente: "Non ho trovato questo ricambio nel catalogo."
+4. Non inserire prodotti a caso che non c'entrano nulla con la ricerca dell'utente.
+"""
 
-            if tutti_risultati:
-                testo_risposta = "Ecco i ricambi trovati nel catalogo ufficiale:\n\n"
-                for r in tutti_risultati[:5]:
-                    testo_risposta += f"- **Codice Articolo:** {r.get('Codice', 'N/D')}\n"
-                    if pd.notna(r.get('Rif_Orig')) and str(r.get('Rid_Orig')) != '':
-                        testo_risposta += f"  **Rif. Originale:** {r.get('Rif_Orig')}\n"
-                    testo_risposta += f"  **Descrizione:** {r.get('Descrizione', 'N/D')}\n"
-                    if pd.notna(r.get('Modelli_Compatibilita')) and str(r.get('Modelli_Compatibilita')) != '':
-                        testo_risposta += f"  **Compatibilità/Dettagli:** {r.get('Modelli_Compatibilita')}\n"
-                    testo_risposta += "\n"
-            else:
-                testo_risposta = "Non ho trovato questo ricambio esatto nel catalogo."
+                    response = client.models.generate_content(
+                        model='gemini-2.5-flash',
+                        contents=user_query,
+                        config=genai.types.GenerateContentConfig(
+                            system_instruction=system_prompt,
+                            temperature=0.0,
+                        ),
+                    )
+                    testo_risposta = response.text
+                except Exception as e:
+                    testo_risposta = f"Si è verificato un errore durante la connessione con l'IA di Google: {e}"
                 
-            st.markdown(testo_risposta)
-            
-    st.session_state.messages.append({"role": "assistant", "content": testo_risposta})
+                st.markdown(testo_risposta)
+                st.session_state.messages.append({"role": "assistant", "content": testo_risposta})
