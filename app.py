@@ -36,7 +36,7 @@ if user_query := st.chat_input("Cerca un ricambio (es. cuneo freno, staffa a u, 
     with st.chat_message("assistant"):
         with st.spinner("L'intelligenza artificiale sta cercando nel catalogo..."):
             try:
-                # Configurazione diretta dell'API key integrata nel codice (nessuna password richiesta all'utente)
+                # Inserisci qui la tua chiave API di Google tra le virgolette
                 client = genai.Client(api_key="AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg")
                 
                 system_prompt = f"""
@@ -52,7 +52,7 @@ REGOLE TASSATIVE:
 """
 
                 response = client.models.generate_content(
-                    model='gemini-1.5-flash',
+                    model='gemini-2.5-flash',
                     contents=user_query,
                     config=genai.types.GenerateContentConfig(
                         system_instruction=system_prompt,
