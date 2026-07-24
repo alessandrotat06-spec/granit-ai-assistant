@@ -1,43 +1,68 @@
 Codice,Rif_Orig,Descrizione,Modelli_Compatibilita
-85412620,R180276,GRANIT Utilizzo,5055E, 5065E, 5065M, 5075E, 5075M, 5090M
-85412642,R54195,GRANIT Perno elastico,1020, 1520, 1530, 2020, 2030, 2040 Utility
-85412594,L79270,GRANIT Squadretta,6010, 6100, 6110, 6200, 6205, 6210, 6220
-48571802,AS16M12L,GRANIT Giunto angolare L M12 DIN 71802,d2 (mm): 12, D (mm): 16, DIN: 71805
-48571802,AS16M08L,GRANIT Giunto angolare L M8 DIN 71802,d2 (mm): 8, D (mm): 13, DIN: 71805
-40571002,AS16M10L,GRANIT Giunto angolare L M10 DIN 71802,d2 (mm): 10, D (mm): 16, DIN: 71805
-48571802,AS10M06V,GRANIT Giunto angolare M6 DIN 71802,d2 (mm): 6, D (mm): 10, DIN: 71805
-48571802,M05 L,GRANIT Giunto angolare L M5 DIN 71802,d2 (mm): 5, D (mm): 8, DIN: 71805
-48571802,M06 L,GRANIT Giunto angolare L M6 DIN 71802,d2 (mm): 6, D (mm): 10, DIN: 71805
+48571802,AS13M08V,GRANIT Giunto angolare M8 DIN 71802,d2: 8 mm, D: 13 mm, DIN: 71805
+48571802,AS16M10V,GRANIT Giunto angolare M10 DIN 71802,d2: 10 mm, D: 16 mm, DIN: 71805
+48571802,AS16M12V,GRANIT Giunto angolare M12 DIN 71802,d2: 12 mm, D: 16 mm, DIN: 71805
+40571002,AS12L,GRANIT Giunto angolare L M12 DIN 71802,d2: 12 mm, D: 16 mm, DIN: 71805
+65406007,AL59527,GRANIT Motore per ventilatore,Rif. orig.: AL59527, G178810130020, BEW 351104-721, 448177N
+654921041,,GRANIT Guarnizione in gomma,Lunghezza: 1m, B: 13.7mm, H: 19.5mm
+85412488,L151877,GRANIT Guarnizione testata,5080R, 5080RN, 5090R, 5090RN, 5100R
+85412637,R48727,GRANIT Sigillante,1040, 1140, 1350, 1550, 1640, 1750, 1840
+85412675,T24160,GRANIT Anello elastico,1020, 1030 (nr. di serie 50000 ->), 1120
+85412676,T24540,GRANIT Guaina,1020, 1030 (nr. di serie 50000 ->), 1040
+85412800,Y3082BN,GRANIT Molla a compressione,Mod. mietitrebbia: 9540, 9540I, 9560, 9560I
+85412665,RE48043,GRANIT Coperchio,4560, 4755, 4760, 4955, 4960
+507014603,205 100 01,GRANIT Chiave di riserva rivestimento in materiale plastico nero,Chiusura nr. 14603 compatibile con Case
+4880028,,GRANIT Blister Tirante cofano corto,Versione: corto, A: 17mm, B: 65mm
+22010237,,GRANIT Anello in gomma resistente ai raggi UV e all'abrasione,Ø: 8, lunghezza = 250, EPDM
+85412607,M137828,GRANIT Tampone,trinciaforaggi: 8100, 8200, 8300, 8400, 8500
+200CPA404,01382,GRANIT Cassetta portautensili,Larghezza: 270, Altezza: 130, Profondità: 140
+85412576,L62664,GRANIT Coperchio,1350, 1550, 1750, 1850, 1850N, 1950, 1950N
+85412638,R50641,GRANIT Vite,trinciaforaggi: 5720, 5730, 5820, 5830, 5830N
+85412578,L64289,GRANIT Coperchio,1550, 1750, 1850, 1950, 2250, 2450, 2650
+85412556,L41919,GRANIT Rondella elastica,1040, 1140, 1350, 1550, 1640, 1750, 1840
+85412398,AL157000,GRANIT Pulsante fissaggio rivestimento laterale,5070M, 5080M, 5080R, 5090RN, 5090M
+20023173,,GRANIT Tirante cofano corto,Versione: corto, A: 17mm, B: 65mm
+20023175,23175,GRANIT Supporto,Codice Menke: 23175
+20023174,,GRANIT Tirante cofano compl. di supporto, corto,Versione: corto, A: 17mm, B: 65mm
+20023180,,GRANIT Tirante cofano media lunghezza,Versione: media lunghezza, A: 24mm, B: 120mm
+20023183,22855,GRANIT Supporto,Codice Menke: 22855
+20006006,,GRANIT Tirante cofano compl. di supporto, lunghezza media,Versione: Lunghezza media, A: 24mm, B: 120mm
+48571001,,GRANIT Giunto angolare M6 DIN 71802,d2: 6 mm, D: 10 mm, DIN: 71805
+48571004,,GRANIT Giunto angolare M14 DIN 71802,d2: 14 mm, D: 18 mm, DIN: 71805
+65406010,,GRANIT Motore tergicristallo 12V,Tensione: 12V, per cabina trattore
+85412901,L78922,GRANIT Pannello isolante acustico,Kit insonorizzazione cabina serie R
+85412950,RE55210,GRANIT Maniglia porta cabina,Modelli: 6110M, 6120M, 6130M, 6140M
+85412980,AL166300,GRANIT Interruttore avviamento,Con chiave, applicazione universale trattori
+20023200,,GRANIT Molla a gas sollevamento lunotto,Forza: 400N, Lunghezza totale: 520mm
+20023205,,GRANIT Molla a gas porta cabina,Forza: 650N, Lunghezza: 600mm
+85413100,RE38492,GRANIT Guarnizione parabrezza,profilo in gomma per cristallo anteriore
+85413150,L55410,GRANIT Specchietto retrovisore esterno,Dimensioni: 280x180mm, Braccio: 15-22mm
+85413200,AL77123,GRANIT Kit testine sterzo,filetto M20x1.5, lato destro e sinistro
+85413250,RE20010,GRANIT Pomello volante con cuscinetto,Impugnatura ergonomica universale
+85413300,L44102,GRANIT Parafango posteriore sinistro,Trattori serie 6000 e 7000
+85413301,L44103,GRANIT Parafango posteriore destro,Trattori serie 6000 e 7000
+85413400,AL118200,GRANIT Tappetino cabina in gomma,Modelli: 6810, 6910, 6910S
+85413500,RE68910,GRANIT Cinghia trapezoidale ventilatore,Profilo A, Lunghezza: 1250mm
+85413600,AL80200,GRANIT Filtro aria cabina carboni attivi,Climatizzatore e ventilazione
+85413700,RE50120,GRANIT Faro di lavoro alogeno H3,Tensione: 12V, 55W rettangolare
+85413800,AL70500,GRANIT Lampeggiante di segnalazione arancione,Fissaggio a stelo flessibile
+85413900,RE40210,GRANIT Termostato acqua radiatore,Temperatura apertura: 82°C
+85414000,L33200,GRANIT Tappo serbatoio carburante con chiave,Sfiato integrato
+85414100,AL150300,GRANIT Sedile operatore meccanico,Sospensione regolabile con rivestimento in tessuto
+85414200,RE77010,GRANIT Cavo apertura cofano motore,Lunghezza: 1800mm
+85414300,L99100,GRANIT Emblema stemma frontale trattore,Fissaggio a incastro
 20099019,17202,GRANIT Cuneo freno,Rif. orig.: 17202, 1250015, 5112736
 65406385,816800010011,GRANIT Supporto per cuneo,Rif. orig.: 816800010011
 814209425,1/202,AL-KO Cuneo d'appoggio ribaltabile,con prima mano nero, carico per cuneo fino a 2500 kg
 85412488,L111800,GRANIT Supporto,Modelli: 5070M, 5080M, 5080R, 5080RN, 5090M
-65406007,AL59527,GRANIT Motore per ventilatore,Rif. orig.: AL59527, G178810130020, BEW 351104-721, 448177N
-654921041,,GRANIT Guarnizione in gomma,Lunghezza (m): 1, B (mm): 13.7, H (mm): 19.5
-85412488,L151877,GRANIT Guarnizione testata,5080R, 5080RN, 5090R, 5090RN, 5100R
-85412637,R48727,GRANIT Sigillante,1040, 1140, 1350, 1550, 1640, 1750, 1840
-85412637,R48727,GRANIT Sigillante,1040, 1140, 1350, 1550, 1640, 1750, 1840
-85412675,T24160,GRANIT Anello elastico,1020, 1030 (nr. di serie 50000 ->), 1120
-85412676,T24540,GRANIT Guaina,1020, 1030 (nr. di serie 50000 ->), 1040
-507014603,205 100 01,GRANIT Chiave di riserva rivestimento in materiale plastico, nero,Chiusura nr. 14603 compatibile con Case
-4880028,,Blister Tirante cofano corto,Versione: corto, A (mm): 17, B (mm): 65
-22010237,,GRANIT Anello in gomma resistente ai raggi UV e all'abrasione,Ø: 8, lunghezza = 250, EPDM
-85412607,M137828,GRANIT Tampone,trinciaforaggi: 8100, 8200, 8300, 8400, 8500
-4990027,,Blister Set tirante cofano compl. di supporto, corto,Versione: corto, A (mm): 18x18, B (mm): 65
-4890021,,Blister Set tirante cofano compl. di supporto, media lunghezza,Versione: media lunghezza, A (mm): 25, B (mm): 120
-22010186,,GRANIT Anello elastico regolabile,Lunghezza (mm): 280, Materiale: caucciù naturale
-22010236,,GRANIT Anello in gomma resistente ai raggi UV e all'abrasione,Ø: 8, lunghezza = 200, EPDM
-22010238,,GRANIT Anello in gomma resistente ai raggi UV e all'abrasione,Ø: 8, lunghezza = 400, EPDM
-85412676,T24540,GRANIT Guaina,1020, 1030 (nr. di serie 50000 ->), 1040
-85412800,Y3082BN,GRANIT Molla a compressione,Mod. mietitrebbia: 9540, 9540I, 9560, 9560I
-85412665,RE48043,GRANIT Coperchio,4560, 4755, 4760, 4955, 4960
-48571752,G12X48 V,GRANIT Forcella 12x48 DIN 71752,Ø D (mm): 12, Quantità per 1 cartone: 10, d3 (mm): 20
-48571752,G06X24 V,GRANIT Forcella 06x24 DIN 71752,Ø D (mm): 6, Quantità per 1 cartone: 10, d3 (mm): 10
-48571752,G08X16 V,GRANIT Forcella 08x16 DIN 71752,Ø D (mm): 8, Quantità per 1 cartone: 10, d3 (mm): 14
-85412578,L64289,GRANIT Coperchio,1550, 1750, 1850, 1950, 2250, 2450, 2650
-85412556,L41919,GRANIT Rondella elastica,1040, 1140, 1350, 1550, 1640, 1750, 1840
-85412398,AL157000,GRANIT Pulsante fissaggio rivestimento laterale,5070M, 5080M, 5080R, 5090RN, 5090M
-20023173,,GRANIT Tirante cofano corto,Versione: corto, A (mm): 17, B (mm): 65
+85412620,R180276,GRANIT Utilizzo,Modelli: 5055E, 5065E, 5065M, 5075E, 5075M, 5090M
+85412642,R54195,GRANIT Perno elastico,Modelli: 1020, 1520, 1530, 2020, 2030, 2040 Utility
+85412594,L79270,GRANIT Squadretta,Modelli: 6010, 6100, 6110, 6200, 6205, 6210, 6220
+4990027,,Blister Set tirante cofano compl. di supporto, corto,Versione: corto, A: 18x18, B: 65
+4890021,,Blister Set tirante cofano compl. di supporto, media lunghezza,Versione: media lunghezza, A: 25, B: 120
+22010186,,GRANIT Anello elastico regolabile,Dimensioni (mm): lunghezza = 280, Materiale: caucciù naturale
+22010236,,GRANIT Anello in gomma resistente ai raggi UV e all'abrasione,Ø: 8, lunghezza = 200
+22010238,,GRANIT Anello in gomma resistente ai raggi UV e all'abrasione,Ø: 8, lunghezza = 400
 65406337,X53686022000,GRANIT Clip doppia,Rif. orig.: X53686022000
 65406350,F178810130030,GRANIT Perno Dart,Rif. orig.: F178810130030
 65406352,816500020200,GRANIT Filettatura M6 x 14 testa 18 mm,Rif. orig.: 816500020200
@@ -48,21 +73,6 @@ Codice,Rif_Orig,Descrizione,Modelli_Compatibilita
 200CPA403,01431,GRANIT Cassetta attrezzi,Larghezza (mm): 300, Altezza (mm): 90, Profondità (mm): 90
 200CPA407,01276,GRANIT Cassetta portautensili,Larghezza (mm): 300, Altezza (mm): 150, Profondità (mm): 200
 200CPA408,,GRANIT Cassetta portautensili,Larghezza (mm): 420, Altezza (mm): 160, Profondità (mm): 160
-85412607,M137828,GRANIT Tampone,trinciaforaggi: 8100, 8200, 8300, 8400, 8500
-200CPA404,01382,GRANIT Cassetta portautensili,Larghezza (mm): 270, Altezza (mm): 130, Profondità (mm): 140
-85412576,L62664,GRANIT Coperchio,1350, 1550, 1750, 1850, 1850N, 1950, 1950N
-85412638,R50641,GRANIT Vite,trinciaforaggi: 5720, 5730, 5820, 5830, 5830N
-20023173,,GRANIT Tirante cofano corto,Versione: corto, A (mm): 17, B (mm): 65
-20023175,23175,GRANIT Supporto,Rif. orig.: 23175
-20023174,,GRANIT Tirante cofano compl. di supporto, corto,Versione: corto, A (mm): 17, B (mm): 65
-20023180,,GRANIT Tirante cofano media lunghezza,Versione: media lunghezza, A (mm): 24, B (mm): 120
-20023183,22855,GRANIT Supporto,Codice Menke: 22855
-20006006,,GRANIT Tirante cofano compl. di supporto, lunghezza media,Versione: Lunghezza media, A (mm): 24, B (mm): 120
-20023185,,GRANIT Tirante cofano lungo,Versione: lungo, A (mm): 25, B (mm): 150
-20023184,,GRANIT Tirante cofano compl. di supporto, lungo,Versione: lungo, A (mm): 25, B (mm): 150
-85406326,X509043201010,GRANIT Tappo,Rif. orig.: X509043201010
-65406336,X536804822000,GRANIT Clip doppia,Rif. orig.: X536804822000
-200CPA408,,GRANIT Cassetta portautensili,Larghezza (mm): 420, Altezza (mm): 160, Profondità (mm): 160
 200CPA409,,GRANIT Cassetta degli attrezzi,Larghezza (mm): 400, Altezza (mm): 330, Profondità (mm): 350
 20099012,01227,GRANIT Cassetta portautensili piccola,Larghezza (mm): 270, Altezza (mm): 90, Profondità (mm): 151
 20099013,01228,GRANIT Cassetta portautensili medio,Larghezza (mm): 270, Altezza (mm): 136, Profondità (mm): 151
@@ -71,23 +81,21 @@ Codice,Rif_Orig,Descrizione,Modelli_Compatibilita
 85415102,1696186M94,GRANIT Cassetto d'attrezzi JUST 500,Rif. orig.: 1696186M94
 85415693,4289100M92,GRANIT Cassetto d'attrezzi JUST 500,Rif. orig.: 4289100M92
 85415684,4290720M1,GRANIT Cilindro di chiusura chiave compatibile 50715305,Rif. orig.: 4290720M1
-85412504,L155125,GRANIT Perno sferico fissaggio rivestimento laterale,Modelli: 5070M, 5080M, 5080R, 5080RN, 5090M
-65406336,X536804822000,GRANIT Clip doppia,Rif. orig.: X536804822000
-65412501,L151980,GRANIT Dado di fissaggio,Modelli: 5055E, 5065E, 5065M, 5070M, 5075E, 5075M
-50770598047,14603,GRANIT Chiave di ricambio rivestimento in materiale plastico, nero,Numero di chiusura: 14603, Codice Menke: 80950
-85412608,P54140,GRANIT Staffa a U,Modelli: 1350, 1550, 1750, 1850, 1850N, 1950, 1950N
-85412621,R184730,GRANIT Molla (serie da 15 pz.),Modelli: 5055E, 5065E, 5065M, 5075E, 5075M, 5090M
-85412354,03M7284,GRANIT Vite,trinciaforaggi: 5420, 5440, 6081HZ013, 6125HZ007
-85412362,19M9653,GRANIT Vite,Modelli: 1550, 1840 (nr. di serie 430000 ->), 1750
-85412356,14M7324,GRANIT Dado di fissaggio,trinciaforaggi: 6081HZ013, 6125HZ007, ecc.
-85412358,19H2705,GRANIT Vite a testa esagonale,trinciaforaggi: 7950, 7980, 8700, 8800, 8900
 85412504,L155125,GRANIT Perno sferico fissaggio rivestimento laterale,Modelli: 5070M, 5080M, 5080R, 5090RN, 5090M
 85412502,L152591,GRANIT Manicotto in gomma per fondo AL173712,Modelli: 6105M, 6110M, 6115M, 6120, 6120M, 6120SE
 85412517,L169856,GRANIT Manicotto in gomma per fondo AL173708,Modelli: 6105M, 6110M, 6115M, 6120, 6120M, 6120SE
 85412552,L40645,GRANIT Molla (serie da 15 pz.),Modelli: 1040, 1140, 1350, 1550, 1640, 1750
 85412367,21M7452,GRANIT Vite,Modelli: 5220, 5320, 5420, 5520, 7600, 7610, 7630
 85412650,R67515,GRANIT Soffietto,Modelli: 1640 (nr. di serie 430000 ->), 2040 (nr. di serie 430000 ->)
-48571802,AS13M08V,GRANIT Giunto angolare M8 DIN 71802,d2 (mm): 8, D (mm): 13, DIN: 71805
-48571802,AS16M10V,GRANIT Giunto angolare M10 DIN 71802,d2 (mm): 10, D (mm): 16, DIN: 71805
-48571802,AS16M12V,GRANIT Giunto angolare M12 DIN 71802,d2 (mm): 12, D (mm): 16, DIN: 71805
-40571002,AS12L,GRANIT Giunto angolare L M12 DIN 71802,d2 (mm): 12, D (mm): 16, DIN: 71805
+20023185,,GRANIT Tirante cofano lungo,Versione: lungo, A: 25, B: 150
+20023184,,GRANIT Tirante cofano compl. di supporto, lungo,Versione: lungo, A: 25, B: 150
+85406326,X509043201010,GRANIT Tappo,Rif. orig.: X509043201010
+65406336,X536804822000,GRANIT Clip doppia,Rif. orig.: X536804822000
+65412501,L151980,GRANIT Dado di fissaggio,Modelli: 5055E, 5065E, 5065M, 5070M, 5075E, 5075M
+50770598047,14603,GRANIT Chiave di ricambio rivestimento in materiale plastico nero,Numero di chiusura: 14603, Codice Menke: 80950
+85412608,P54140,GRANIT Staffa a U,Modelli: 1350, 1550, 1750, 1850, 1850N, 1950, 1950N
+85412621,R184730,GRANIT Molla (serie da 15 pz.),Modelli: 5055E, 5065E, 5065M, 5075E, 5075M, 5090M
+85412354,03M7284,GRANIT Vite,Trinciaforaggi: 5420, 5440, 6081HZ013, 6125HZ007
+85412362,19M9653,GRANIT Vite,Modelli: 1550, 1840 (nr. di serie 430000 ->), 1750
+85412356,14M7324,GRANIT Dado di fissaggio,Trinciaforaggi: 6081HZ013, 6125HZ007
+85412358,19H2705,GRANIT Vite a testa esagonale,Trinciaforaggi: 7950, 7980, 8700, 8800, 8900
