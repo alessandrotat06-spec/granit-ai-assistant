@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
-from google import genai
-import time
+import google.generativeai as genai
 
 # Configurazione della pagina Streamlit
 st.set_page_config(page_title="Granit AI Assistant", page_icon="🚜", layout="centered")
@@ -9,8 +8,9 @@ st.set_page_config(page_title="Granit AI Assistant", page_icon="🚜", layout="c
 st.title("🚜 Granit Quality Parts - Assistente IA")
 st.write("Chiedi informazioni sui ricambi e naviga il catalogo in modo istantaneo.")
 
-# Configurazione della chiave API di Google
-client = genai.Client(api_key="AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg")
+# Configurazione della chiave API di Google con la libreria classica ultra-stabile
+GOOGLE_API_KEY = "AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg"  # Ricordati di metter qui la tua chiave
+genai.configure(api_key=GOOGLE_API_KEY)
 
 # Caricamento del catalogo CSV
 @st.cache_data
@@ -23,7 +23,7 @@ def carica_catalogo():
 
 catalogo_testo = carica_catalogo()
 
-# Configurazione delle istruzioni di sistema per il modello
+# Configurazione delle istruzioni di sistema
 system_prompt = f"""
 Sei l'assistente virtuale ufficiale di Granit Quality Parts.
 ECCO IL CATALOGO COMPLETO DEI PRODOTTI:
@@ -35,7 +35,13 @@ REGOLE TASSATIVE:
 3. Se un ricambio non è presente nel catalogo, di' chiaramente che non è disponibile.
 """
 
-# Gestione della cronologia della chat nell'interfaccia di Streamlit
+# Inizializzazione del modello stabile
+model = genai.GenerativeModel(
+    model_name='gemini-pro',
+    system_instruction=system_prompt
+)
+
+# Gestione della cronologia della chat
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -51,25 +57,11 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
 
     with st.chat_message("assistant"):
         with st.spinner("Sto cercando nel catalogo..."):
-            testo_risposta = None
-            # Tentativi automatici in caso di sovraccarico temporaneo dei server (503)
-            for tentativo in range(3):
-                try:
-                    response = client.models.generate_content(
-                        model='gemini-1.5-flash',
-                        contents=user_query,
-                        config=genai.types.GenerateContentConfig(
-                            system_instruction=system_prompt,
-                            temperature=0.2,
-                        ),
-                    )
-                    testo_risposta = response.text
-                    break
-                except Exception as e:
-                    if tentativo < 2:
-                        time.sleep(2) # Attende 2 secondi prima di riprovare
-                    else:
-                        testo_risposta = f"I server di Google sono momentaneamente sovraccarichi (Errore 503). Riprova tra qualche secondo."
+            try:
+                response = model.generate_content(user_query)
+                testo_risposta = response.text
+            except Exception as e:
+                testo_risposta = f"Errore temporaneo: {e}"
                 
             st.markdown(testo_risposta)
             
