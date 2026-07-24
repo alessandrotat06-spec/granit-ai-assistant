@@ -51,9 +51,9 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
     with st.chat_message("assistant"):
         with st.spinner("Sto cercando nel catalogo..."):
             try:
-                # Chiamata all'API di Gemini con il modello aggiornato
+                # Chiamata all'API di Gemini con il modello stabile
                 response = client.models.generate_content(
-                    model='gemini-2.5-flash',
+                    model='gemini-3.5-flash',
                     contents=user_query,
                     config=genai.types.GenerateContentConfig(
                         system_instruction=system_prompt,
