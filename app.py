@@ -59,20 +59,32 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
                 )
                 testo_risposta = response.text
             except Exception as e:
-                # Se becchi il limite della quota (429) o sovraccarico (503), 
-                # facciamo una ricerca di sicurezza nel DataFrame per non bloccare la demo!
+                # Ricerca di sicurezza nel DataFrame con formattazione pulita per umani
                 query_lower = user_query.lower()
-                risultati_trovati = []
+                righe_trovate = []
+                
                 if df_catalogo is not None:
                     for index, row in df_catalogo.iterrows():
                         row_str = " ".join(str(val).lower() for val in row.values)
                         if any(parola in row_str for parola in query_lower.split() if len(parola) > 2):
-                            risultati_trovati.append(str(row.values))
+                            righe_trovate.append(row)
                 
-                if risultati_trovati:
-                    testo_risposta = f"*(Nota: I server Google sono temporaneamente limitati in frequenza, ma ecco cosa ho trovato direttamente nel catalogo)*:\n\n" + "\n".join(risultati_trovati[:3])
+                if righe_trovate:
+                    testo_risposta = "Ho trovato questi prodotti nel catalogo per te:\n\n"
+                    for r in righe_trovate[:3]:
+                        # Prende i campi principali in modo pulito (adattalo in base alle colonne del tuo CSV)
+                        valori = list(r.values)
+                        codice = valori[0] if len(valori) > 0 else ""
+                        descrizione = valori[2] if len(valori) > 2 else (valori[1] if len(valori) > 1 else "")
+                        compatibilita = valori[3] if len(valori) > 3 else ""
+                        
+                        testo_risposta += f"- **Codice Articolo:** {codice}\n"
+                        testo_risposta += f"  **Descrizione:** {descrizione}\n"
+                        if compatibilita:
+                            testo_risposta += f"  **Compatibilità:** {compatibilita}\n"
+                        testo_risposta += "\n"
                 else:
-                    testo_risposta = f"Al momento i server di Google hanno raggiunto il limite massimo di richieste gratuite (Errore 429/Quota). Aspetta un minuto oppure controlla i dati nel catalogo."
+                    testo_risposta = "Al momento i server Google sono temporaneamente occupati e non ho trovato corrispondenze esatte nel catalogo offline. Riprova tra qualche istante."
                 
             st.markdown(testo_risposta)
             
