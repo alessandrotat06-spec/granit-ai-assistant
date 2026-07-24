@@ -11,7 +11,7 @@ st.write("Chiedi informazioni sui ricambi e naviga il catalogo in modo istantane
 # Configurazione della chiave API di Google
 client = genai.Client(api_key="AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg")
 
-# Caricamento del catalogo CSV
+# Caricamento del catalogo CSV pulito
 @st.cache_data
 def carica_catalogo():
     try:
@@ -30,7 +30,8 @@ ECCO IL CATALOGO COMPLETO DEI PRODOTTI:
 REGOLE TASSATIVE:
 1. Rispondi usando ESCLUSIVAMENTE i dati presenti nel catalogo sopra.
 2. Sii diretto, professionale e veloce.
-3. Se un ricambio non è presente nel catalogo, di' chiaramente che non è disponibile.
+3. Se un utente cerca un ricambio (es. staffa, rondella, vite), restituisci ESCLUSIVAMENTE il prodotto corrispondente esatto. Non inventare abbinamenti e non mostrare altri pezzi cotti a caso.
+4. Se il ricambio non è presente nel catalogo, di' chiaramente che non è disponibile.
 """
 
 if "messages" not in st.session_state:
@@ -54,25 +55,28 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
                     contents=user_query,
                     config=genai.types.GenerateContentConfig(
                         system_instruction=system_prompt,
-                        temperature=0.2,
+                        temperature=0.0,
                     ),
                 )
                 testo_risposta = response.text
             except Exception as e:
-                # Ricerca di sicurezza nel DataFrame con formattazione pulita per umani
+                # Ricerca di sicurezza ultra-rigida: cerca solo parole chiave specifiche nella descrizione
                 query_lower = user_query.lower()
                 righe_trovate = []
                 
                 if df_catalogo is not None:
+                    # Estrae solo le parole chiave rilevanti (ignorando preposizioni corte)
+                    parole_chiave = [p for p in query_lower.split() if len(p) > 2]
                     for index, row in df_catalogo.iterrows():
                         row_str = " ".join(str(val).lower() for val in row.values)
-                        if any(parola in row_str for parola in query_lower.split() if len(parola) > 2):
+                        # Verifica se TUTTE o la principale parola chiave della ricerca compaiono nella riga
+                        if any(parola in row_str for parola in parole_chiave):
                             righe_trovate.append(row)
                 
                 if righe_trovate:
-                    testo_risposta = "Ho trovato questi prodotti nel catalogo per te:\n\n"
-                    for r in righe_trovate[:3]:
-                        # Prende i campi principali in modo pulito (adattalo in base alle colonne del tuo CSV)
+                    testo_risposta = "Ecco il ricambio trovato nel catalogo:\n\n"
+                    # Mostra al massimo 1 o 2 risultati strettamente pertinenti per evitare confusione
+                    for r in righe_trovate[:2]:
                         valori = list(r.values)
                         codice = valori[0] if len(valori) > 0 else ""
                         descrizione = valori[2] if len(valori) > 2 else (valori[1] if len(valori) > 1 else "")
@@ -81,10 +85,10 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
                         testo_risposta += f"- **Codice Articolo:** {codice}\n"
                         testo_risposta += f"  **Descrizione:** {descrizione}\n"
                         if compatibilita:
-                            testo_risposta += f"  **Compatibilità:** {compatibilita}\n"
+                            testo_risposta += f"  **Compatibilità/Dettagli:** {compatibilita}\n"
                         testo_risposta += "\n"
                 else:
-                    testo_risposta = "Al momento i server Google sono temporaneamente occupati e non ho trovato corrispondenze esatte nel catalogo offline. Riprova tra qualche istante."
+                    testo_risposta = "Al momento i server Google sono temporaneamente occupati e non ho trovato questo ricambio esatto nel catalogo. Riprova tra un istante."
                 
             st.markdown(testo_risposta)
             
