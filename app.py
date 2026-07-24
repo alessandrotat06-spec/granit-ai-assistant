@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from google import genai
+import time
 
 # Configurazione della pagina Streamlit
 st.set_page_config(page_title="Granit AI Assistant", page_icon="🚜", layout="centered")
@@ -50,19 +51,25 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
 
     with st.chat_message("assistant"):
         with st.spinner("Sto cercando nel catalogo..."):
-            try:
-                # Chiamata all'API di Gemini con il modello stabile
-                response = client.models.generate_content(
-                    model='gemini-3.5-flash',
-                    contents=user_query,
-                    config=genai.types.GenerateContentConfig(
-                        system_instruction=system_prompt,
-                        temperature=0.2,
-                    ),
-                )
-                testo_risposta = response.text
-            except Exception as e:
-                testo_risposta = f"Errore di connessione con l' IA: {e}"
+            testo_risposta = None
+            # Tentativi automatici in caso di sovraccarico temporaneo dei server (503)
+            for tentativo in range(3):
+                try:
+                    response = client.models.generate_content(
+                        model='gemini-1.5-flash',
+                        contents=user_query,
+                        config=genai.types.GenerateContentConfig(
+                            system_instruction=system_prompt,
+                            temperature=0.2,
+                        ),
+                    )
+                    testo_risposta = response.text
+                    break
+                except Exception as e:
+                    if tentativo < 2:
+                        time.sleep(2) # Attende 2 secondi prima di riprovare
+                    else:
+                        testo_risposta = f"I server di Google sono momentaneamente sovraccarichi (Errore 503). Riprova tra qualche secondo."
                 
             st.markdown(testo_risposta)
             
