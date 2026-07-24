@@ -1,6 +1,6 @@
 import streamlit as st
 import pandas as pd
-import google.generativeai as genai
+from google import genai
 
 # Configurazione della pagina Streamlit
 st.set_page_config(page_title="Granit AI Assistant", page_icon="🚜", layout="centered")
@@ -8,9 +8,8 @@ st.set_page_config(page_title="Granit AI Assistant", page_icon="🚜", layout="c
 st.title("🚜 Granit Quality Parts - Assistente IA")
 st.write("Chiedi informazioni sui ricambi e naviga il catalogo in modo istantaneo.")
 
-# Configurazione della chiave API di Google
-GOOGLE_API_KEY = "AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg"  # Sostituisci con la tua chiave
-genai.configure(api_key=GOOGLE_API_KEY)
+# Configurazione della chiave API di Google con la nuova libreria
+client = genai.Client(api_key="TUA_GOOGLE_API_KEY")
 
 # Caricamento del catalogo CSV
 @st.cache_data
@@ -23,7 +22,7 @@ def carica_catalogo():
 
 catalogo_testo = carica_catalogo()
 
-# Configurazione del modello Gemini
+# Configurazione delle istruzioni di sistema per il modello
 system_prompt = f"""
 Sei l'assistente virtuale ufficiale di Granit Quality Parts.
 ECCO IL CATALOGO COMPLETO DEI PRODOTTI:
@@ -34,11 +33,6 @@ REGOLE TASSATIVE:
 2. Sii diretto, professionale e veloce.
 3. Se un ricambio non è presente nel catalogo, di' chiaramente che non è disponibile.
 """
-
-model = genai.GenerativeModel(
-    model_name='gemini-1.5-flash-latest',
-    system_instruction=system_prompt
-)
 
 # Gestione della cronologia della chat nell'interfaccia di Streamlit
 if "messages" not in st.session_state:
@@ -56,8 +50,20 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
 
     with st.chat_message("assistant"):
         with st.spinner("Sto cercando nel catalogo..."):
-            risposta = model.generate_content(user_query)
-            testo_risposta = risposta.text
+            try:
+                # Chiamata pulita e moderna all'API di Gemini
+                response = client.models.generate_content(
+                    model='gemini-2.5-flash',
+                    contents=user_query,
+                    config=genai.types.GenerateContentConfig(
+                        system_instruction=system_prompt,
+                        temperature=0.2,
+                    ),
+                )
+                testo_risposta = response.text
+            except Exception as e:
+                testo_risposta = f"Errore di connessione con l' IA: {e}"
+                
             st.markdown(testo_risposta)
             
     st.session_state.messages.append({"role": "assistant", "content": testo_risposta})
