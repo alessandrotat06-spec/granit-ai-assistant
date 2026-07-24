@@ -8,8 +8,8 @@ st.set_page_config(page_title="Granit AI Assistant", page_icon="🚜", layout="c
 st.title("🚜 Granit Quality Parts - Assistente IA")
 st.write("Chiedi informazioni sui ricambi e naviga il catalogo in modo istantaneo.")
 
-# Configurazione della chiave API di Google con la libreria classica ultra-stabile
-GOOGLE_API_KEY = "AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg"  # Ricordati di metter qui la tua chiave
+# Configurazione della chiave API di Google
+GOOGLE_API_KEY = "AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg"  # Inserisci qui la tua chiave
 genai.configure(api_key=GOOGLE_API_KEY)
 
 # Caricamento del catalogo CSV
@@ -35,9 +35,9 @@ REGOLE TASSATIVE:
 3. Se un ricambio non è presente nel catalogo, di' chiaramente che non è disponibile.
 """
 
-# Inizializzazione del modello stabile
+# Inizializzazione del modello con un nome attualmente supportato e attivo
 model = genai.GenerativeModel(
-    model_name='gemini-pro',
+    model_name='gemini-3.5-flash',
     system_instruction=system_prompt
 )
 
@@ -61,7 +61,7 @@ if user_query := st.chat_input("Cerca un ricambio o fai una domanda..."):
                 response = model.generate_content(user_query)
                 testo_risposta = response.text
             except Exception as e:
-                testo_risposta = f"Errore temporaneo: {e}"
+                testo_risposta = f"Errore di connessione: {e}"
                 
             st.markdown(testo_risposta)
             
