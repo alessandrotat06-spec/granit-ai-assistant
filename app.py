@@ -8,9 +8,6 @@ st.set_page_config(page_title="Granit Quality Parts - Assistente IA", page_icon=
 st.title("🚜 Granit Quality Parts - Assistente IA")
 st.write("Chiedi informazioni sui ricambi e naviga il catalogo ufficiale con l'intelligenza artificiale.")
 
-# Barra laterale per inserire l'API Key di Google
-api_key_input = st.sidebar.text_input("AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg", type="password")
-
 # Caricamento del catalogo CSV
 @st.cache_data
 def carica_catalogo():
@@ -37,15 +34,12 @@ if user_query := st.chat_input("Cerca un ricambio (es. cuneo freno, staffa a u, 
         st.markdown(user_query)
 
     with st.chat_message("assistant"):
-        if not api_key_input:
-            st.warning("⚠️ Per favore, inserisci la tua Google API Key nella barra laterale per attivare l'assistente IA.")
-        else:
-            with st.spinner("L'intelligenza artificiale sta cercando nel catalogo..."):
-                try:
-                    # Inizializzazione del client Google GenAI con la chiave fornita
-                    client = genai.Client(api_key=api_key_input)
-                    
-                    system_prompt = f"""
+        with st.spinner("L'intelligenza artificiale sta cercando nel catalogo..."):
+            try:
+                # Configurazione diretta dell'API key integrata nel codice (nessuna password richiesta all'utente)
+                client = genai.Client(api_key="AQ.Ab8RN6JavzpWb7CgSW_1z7AYBuLUMP5UQ8KTcye9Xh28Tg_hFg")
+                
+                system_prompt = f"""
 Sei l'assistente virtuale ufficiale di Granit Quality Parts.
 ECCO IL CATALOGO COMPLETO DEI PRODOTTI:
 {catalogo_testo}
@@ -57,17 +51,17 @@ REGOLE TASSATIVE:
 4. Non inserire prodotti a caso che non c'entrano nulla con la ricerca dell'utente.
 """
 
-                    response = client.models.generate_content(
-                        model='gemini-2.5-flash',
-                        contents=user_query,
-                        config=genai.types.GenerateContentConfig(
-                            system_instruction=system_prompt,
-                            temperature=0.0,
-                        ),
-                    )
-                    testo_risposta = response.text
-                except Exception as e:
-                    testo_risposta = f"Si è verificato un errore durante la connessione con l'IA di Google: {e}"
-                
-                st.markdown(testo_risposta)
-                st.session_state.messages.append({"role": "assistant", "content": testo_risposta})
+                response = client.models.generate_content(
+                    model='gemini-1.5-flash',
+                    contents=user_query,
+                    config=genai.types.GenerateContentConfig(
+                        system_instruction=system_prompt,
+                        temperature=0.0,
+                    ),
+                )
+                testo_risposta = response.text
+            except Exception as e:
+                testo_risposta = f"Si è verificato un errore durante la connessione con l'IA di Google: {e}"
+            
+            st.markdown(testo_risposta)
+            st.session_state.messages.append({"role": "assistant", "content": testo_risposta})
